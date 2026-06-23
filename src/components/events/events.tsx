@@ -11,7 +11,9 @@ function Events(props) {
   const [singleEvent, setSingleEvent] = useState([]);
   // console.log("Sing: ", singleEvent);
   const dialogRef = useRef(null);
+
   console.log("Ready events", managedEvents);
+
   function fetchEvent(id: string) {
     const fetchedEvent = eventsChoice.filter((event) => event.id === id);
     // console.log("P+ID: ", fetchedPost);
@@ -21,6 +23,7 @@ function Events(props) {
       ? fetchedEvent[0]
       : "no event found with this id";
   }
+
   function dialogHandler(e) {
     const dialog = dialogRef.current;
     const id = e.target.id;
@@ -32,6 +35,7 @@ function Events(props) {
       dialog.showModal();
     }
   }
+
   const selectHandler = (e) => {
     const items = eventsChoice.filter(
       (item) => item.category === e.target.value,
@@ -42,6 +46,7 @@ function Events(props) {
       setManagedEvents(items);
     }
   };
+
   const statusHandler = (e) => {
     const items = eventsChoice.filter((item) => item.status === e.target.value);
     if (e.target.value === "all") {
@@ -50,6 +55,7 @@ function Events(props) {
       setManagedEvents(items);
     }
   };
+
   const submitHandler = (e) => {
     e.preventDefault();
     if (!searchTerm) return;
@@ -59,10 +65,13 @@ function Events(props) {
     console.log("Filtered events: ", filteredEvents);
     setManagedEvents(filteredEvents);
   };
+
   const searchInputHandler = (e) => {
     // const keyword = e.target.value;
     setSearchTerm(e.target.value);
   };
+  target;
+
   return (
     <>
       <section className="bg-gray-50 py-8 antialiased dark:bg-gray-900 md:py-12">
@@ -110,6 +119,7 @@ function Events(props) {
                   >
                     Social
                   </option>
+                  target
                   <option
                     value="hackathon"
                     className="block p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded-md"
@@ -166,6 +176,7 @@ function Events(props) {
                   >
                     Cancelled
                   </option>
+
                   <option
                     value="completed"
                     className="block p-2 hover:bg-neutral-tertiary-medium hover:text-heading rounded-md"
